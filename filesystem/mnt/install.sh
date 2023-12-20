@@ -12,15 +12,9 @@ apt-get install -y \
  bash-completion git apt-transport-https ca-certificates \
  software-properties-common
 
-##
-echo "Install self-signed CA-s"
+## Run pre-install scripts
+sh /mnt/setup-ca.sh
 
-self_signed_dir="/usr/share/ca-certificates/self-signed"
-for file in "$self_signed_dir"/*.crt; do
-    my_crt="self-signed/$(basename "$file")"
-    echo "$my_crt" >> /etc/ca-certificates.conf
-done
-update-ca-certificates --fresh --verbose
 
 ##
 echo "Install GitLab Runner"
@@ -40,7 +34,7 @@ gitlab-runner register \
     --tag-list "java11" \
     --executor shell
 
-export cred_home="/root"
+export cred_home="/home/gitlab-runner"
 
 echo "Create GitLab credentials file"
 cat << EOF > ${cred_home}/.my-git-credentials
@@ -59,8 +53,9 @@ cat << EOF > ${cred_home}/.gitconfig
 	email = ${GIT_SA_USERNAME}@mail.adm.acme.corp
 EOF
 
-echo "Set ownership & permissions of .gitconfig"
+echo "Set ownership & permissions"
 chmod 644 ${cred_home}/.gitconfig
+chown -R gitlab-runner:gitlab-runner /home/gitlab-runner
 
 ##
 echo "Install JDK"
