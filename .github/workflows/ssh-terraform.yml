@@ -16,6 +16,6 @@ jobs:
           SshPort: ${{ secrets.TEL_SSH_PORT }}
           SshUser: ${{ secrets.TEL_SSH_USER }}
           SshPrivateKey: ${{ secrets.GHA_SSH_PRIVATE_KEY }}
-          RemotePath: "~/components/containers/adm/glrunner-java11"
+          RemotePath: "~/components/containers/adm/glrunner-b3"
           DryRun: true
           Destroy: false
