@@ -19,7 +19,7 @@ jobs:
           RemotePath: "~/components/containers/adm/glrunner-b3"
           BackendConfig: >
             {
-              "endpoint": "${{ secrets.CI_S3_MINIO_ADM_ENDPOINT }}",
+              "endpoint": "${{ vars.CI_S3_MINIO_ADM_ENDPOINT }}",
               "access_key": "${{ secrets.CI_MINIO_ADM_SA_ACCESS_KEY }}",
               "secret_key": "${{ secrets.CI_MINIO_ADM_SA_SECRET_KEY }}",
               "bucket": "platform-state-adm",
