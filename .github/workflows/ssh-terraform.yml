@@ -23,7 +23,7 @@ jobs:
               "access_key": "${{ secrets.CI_MINIO_ADM_SA_ACCESS_KEY }}",
               "secret_key": "${{ secrets.CI_MINIO_ADM_SA_SECRET_KEY }}",
               "bucket": "platform-state-adm",
-              "key": "container/glrunner-b3/tfstate.json",
+              "key": "lxd/glrunner-b3/tfstate.json",
               "region": "main",
               "skip_credentials_validation": true,
               "skip_metadata_api_check": true,
